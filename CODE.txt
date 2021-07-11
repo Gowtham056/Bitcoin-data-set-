@@ -1,0 +1,18 @@
+from google.colab import drive
+drive.mount('/content/drive',force_remount=True)
+import pandas
+d=pandas.read_csv('/content/drive/My Drive/ML AS_1/bitcoin.csv')
+print(type(d))
+d=d.dropna()
+print(d)
+import numpy as np
+import matplotlib.pyplot as plt
+for i in range(len(d)):
+   d['Gp']=d["Open"]-d["Close"]
+plt.xticks(rotation='vertical')
+plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))
+plt.ylabel("Gross Profit or Loss of that day")
+plt.xlabel("Date")
+for i in range(len(d)):
+  plt.plot(d['Date'],d['Gp'])
+plt.show() 
